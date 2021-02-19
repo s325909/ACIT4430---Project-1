@@ -12,7 +12,7 @@ host host1 {
          apt-get update
 	 apt-get -y install puppet-agent
 	 echo "10.0.48.119 master.openstacklocal master" >> /etc/hosts
-	 wget http://www.cs.hioa.no/~haugerud/agent.pp	 
+	 wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/agent.pp	 
 	 /opt/puppetlabs/puppet/bin/puppet apply agent.pp
       }
       image Ubuntu16.04
