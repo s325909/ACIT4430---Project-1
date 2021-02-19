@@ -1,32 +1,24 @@
 user { "john":
-        ensure => present,
-        gid => '1002',
+        ensure => 'present',
         home => '/home/john',
         shell => '/bin/bash',
-        uid => '1002',
 	managehome => 'true',
 }
 user { "alice":
-        ensure => present,
-        gid => '1002',
+        ensure => 'present',
         home => '/home/alice',
         shell => '/bin/bash',
-        uid => '1002',
 	managehome => 'true',
 }
 user { "bob":
-        ensure => present,
-        gid => '1003',
+        ensure => 'present',
         home => '/home/bob',
         shell => '/bin/bash',
-        uid => '1003',
 	managehome => 'true',
 }
 user { "kate":
-        ensure => present,
-        gid => '1004',
+        ensure => 'present',
         home => '/home/kate',
         shell => '/bin/bash',
-        uid => '1004',
 	managehome => 'true',
 }
