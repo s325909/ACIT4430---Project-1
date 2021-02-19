@@ -26,3 +26,24 @@ service { "puppet" :
 	hasstatus => true,
 	require => Augeas['puppet.conf','puppet_default'],
 }
+user { "alice":
+        ensure => present,
+        gid => '1002',
+        home => '/home/john',
+        shell => '/bin/bash',
+        uid => '1002',
+}
+user { "bob":
+        ensure => present,
+        gid => '1003',
+        home => '/home/bob',
+        shell => '/bin/bash',
+        uid => '1003',
+}
+user { "kate":
+        ensure => present,
+        gid => '1004',
+        home => '/home/kate',
+        shell => '/bin/bash',
+        uid => '1004',
+}
