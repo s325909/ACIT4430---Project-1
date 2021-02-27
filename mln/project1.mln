@@ -2,7 +2,7 @@ global {
    project project1
 }
 
-superclass server {
+superclass agent {
    openstack {
       user_data {
          wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
@@ -10,11 +10,11 @@ superclass server {
          apt-get update
          apt-get -y install puppet-agent
          echo "10.0.48.119 master.openstacklocal master" >> /etc/hosts
-         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/agent.pp
+         wget https://github.com/s325909/ACIT4430---Project-1/blob/master/manifest/agent.pp
          /opt/puppetlabs/puppet/bin/puppet apply agent.pp
       }
       image Ubuntu16.04
-      flavor m1.small
+      flavor m1.medium
       keypair master-key
    }
    network eth0 {
@@ -23,12 +23,63 @@ superclass server {
    }
 }
 
-host storage {
+host virtual-desktop1 {
    superclass server
    openstack {
       user_data {
-         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/nfs.pp
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+         /opt/puppetlabs/puppet/bin/puppet apply desktop.pp
+      }
+   }
+}
+
+host virtual-desktop2 {
+   superclass server
+   openstack {
+      user_data {
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+         /opt/puppetlabs/puppet/bin/puppet apply desktop.pp
+      }
+   }
+}
+
+host virtual-desktop3 {
+   superclass server
+   openstack {
+      user_data {
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+         /opt/puppetlabs/puppet/bin/puppet apply desktop.pp
+      }
+   }
+}
+
+host virtual-desktop4 {
+   superclass server
+   openstack {
+      user_data {
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+         /opt/puppetlabs/puppet/bin/puppet apply desktop.pp
+      }
+   }
+}
+
+
+host storage-server {
+   superclass server
+   openstack {
+      user_data {
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/nfs.pp
          /opt/puppetlabs/puppet/bin/puppet apply nfs.pp
+      }
+   }
+}
+
+host database-server {
+   superclass server
+   openstack {
+      user_data {
+         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/mongo.pp
+         /opt/puppetlabs/puppet/bin/puppet apply mongo.pp
       }
    }
 }
