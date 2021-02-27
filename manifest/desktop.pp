@@ -5,7 +5,10 @@ user { $users:
         managehome => 'true',
 }
 
-$packages = ['ubuntu-desktop', 'vnc4server', 'jed']
-package { $packages:
+package { 'ubuntu-desktop':
+        ensure => installed
+}
+
+package { 'vnc4server':
         ensure => installed
 }
