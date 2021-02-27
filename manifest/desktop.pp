@@ -1,30 +1,11 @@
-package {'mongodb':
+$packages = ['ubuntu-desktop', 'vnc4server', 'jed']
+package { $packages:
         ensure => installed
 }
-package {'mongodb':
-        ensure => installed
-}
-user { "john":
+
+$users = ['john', 'alice', 'bob', 'kate']
+user { $users:
         ensure => present,
-        home => '/home/john',
         shell => '/bin/bash',
-	managehome => 'true',
-}
-user { "alice":
-        ensure => present,
-        home => '/home/alice',
-        shell => '/bin/bash',
-	managehome => 'true',
-}
-user { "bob":
-        ensure => present,
-        home => '/home/bob',
-        shell => '/bin/bash',
-	managehome => 'true',
-}
-user { "kate":
-        ensure => present,
-        home => '/home/kate',
-        shell => '/bin/bash',
-	managehome => 'true',
+        managehome => 'true',
 }
