@@ -1,5 +1,9 @@
 global {
    project proj1
+   $agent_manifest = https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/agent.pp
+   $desktop_manifest = https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+   $storage_manifest = https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/nfs.pp
+   $database_manifest = https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/mongo.pp
 }
 
 superclass agent {
@@ -10,7 +14,7 @@ superclass agent {
          apt-get update
          apt-get -y install puppet-agent
          echo "10.0.48.119 master.openstacklocal master" >> /etc/hosts
-         wget https://github.com/s325909/ACIT4430---Project-1/blob/master/manifest/agent.pp
+         wget $agent_manifest
          /opt/puppetlabs/puppet/bin/puppet apply agent.pp
       }
       image Ubuntu16.04
@@ -27,7 +31,7 @@ superclass desktop {
    superclass agent
    openstack {
       user_data {
-         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/desktop.pp
+         wget $desktop_manifest
          /opt/puppetlabs/puppet/bin/puppet apply desktop.pp
       }
    }
@@ -54,7 +58,7 @@ host storage-server {
    superclass agent
    openstack {
       user_data {
-         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/nfs.pp
+         wget storage_manifest
          /opt/puppetlabs/puppet/bin/puppet apply nfs.pp
       }
    }
@@ -64,7 +68,7 @@ host database-server {
    superclass agent
    openstack {
       user_data {
-         wget https://raw.githubusercontent.com/s325909/ACIT4430---Project-1/master/manifest/mongo.pp
+         wget database_manifest
          /opt/puppetlabs/puppet/bin/puppet apply mongo.pp
       }
    }
